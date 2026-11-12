@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { ScrollView, View, useWindowDimensions } from "react-native";
+import { RegisterScreen } from "./src/screens";
+import { CreateAccountScreen } from "./src/screens/Auth/CreateAccount/CreateAccountScreen";
+import { VerifyCodeScreen } from "./src/screens/Auth/VerifyCode/VerifyCodeScreen";
 
 export default function App() {
+  const { width } = useWindowDimensions();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <>
       <StatusBar style="auto" />
-    </View>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexDirection: "row" }}
+      >
+        <View style={{ width }}>
+          <RegisterScreen />
+        </View>
+        <View style={{ width }}>
+          <CreateAccountScreen />
+        </View>
+        <View style={{ width }}>
+          <VerifyCodeScreen />
+        </View>
+      </ScrollView>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
